@@ -174,11 +174,17 @@ footer{
     padding:15px 25px;
     border:3px solid #fff;
     border-radius:30px;
-    transition:.5s ease all
+    transition:.5s ease all;
+    text-decoration:none
 }
 .btn-rounded-white:hover{
     color:#3498db;
     background:#fff;
+    text-decoration:none
+}
+.btn-rounded-white:visited{
+    color:#fff;
+    background:#3498db;
     text-decoration:none
 }
 .shadow{
@@ -679,6 +685,13 @@ footer{
     #lead-content a{
         padding:10px 20px
     }
+    a.btn-rounded-white
+    {
+
+        text-decoration: none
+        color:#fff;
+    }
+    
     #lead-down{
         display:none
     }
