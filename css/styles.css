@@ -232,7 +232,7 @@ footer{
     height:100vh;
     min-height:500px;
     max-height:1080px;
-    background:url(../images/lead-bg.jpg);
+    background:url(../images/lead-bg-4.png);
     background-size:cover;
     padding:15px;
     overflow:hidden
@@ -452,6 +452,7 @@ footer{
 .education-block ul{
     padding:0 0 0 15px
 }
+
 #projects{
     padding:50px 15px;
     border-bottom:1px solid #dcd9d9;
@@ -499,6 +500,21 @@ footer{
 #more-projects{
     display:none
 }
+
+
+
+#awards{
+    padding:50px 15px;
+    border-bottom:1px solid #dcd9d9;
+    text-align:center
+}
+#awards h2{
+    color:#374054;
+    margin-bottom:50px
+}
+
+
+
 #skills{
     padding:50px 15px;
     text-align:center
