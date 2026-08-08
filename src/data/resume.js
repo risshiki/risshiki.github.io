@@ -266,7 +266,7 @@ export const awards = [
     name: 'Students\u2019 Energy Parliament — Best Written Submission',
     year: '2016',
     description:
-      'Wrote a five-year detailed plan for digitizing educational resources, which was implemented by the state of Kerala, India.',
+      'Wrote a five-year detailed plan for digitizing educational resources, which was reviewed by the Government of Kerala, India.',
     details: [
       'The Students\u2019 Energy Parliament is a working body rather than a model UN — delegates are seated by academic discipline (biology, physics, arts, law) instead of by governance portfolio, and collaborate across those specialties to draft resolutions.',
       'The All-India session ran in February 2016 in the Assembly Hall of the Kerala State Secretariat in Thiruvananthapuram, drawing delegates from universities across the country.',
