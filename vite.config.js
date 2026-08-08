@@ -29,13 +29,41 @@ function jsonLd() {
     })),
   }
 
+  const base = process.env.VITE_BASE || '/'
+
   return {
-    name: 'inject-json-ld',
+    name: 'inject-agent-metadata',
     transformIndexHtml: () => [
       {
         tag: 'script',
         attrs: { type: 'application/ld+json' },
         children: JSON.stringify(data),
+        injectTo: 'head',
+      },
+      // Discovery hints for agents that read the head rather than the rendered page.
+      {
+        tag: 'link',
+        attrs: { rel: 'alternate', type: 'text/plain', href: `${base}llms.txt`, title: 'llms.txt' },
+        injectTo: 'head',
+      },
+      {
+        tag: 'link',
+        attrs: {
+          rel: 'alternate',
+          type: 'text/plain',
+          href: `${base}llms-full.txt`,
+          title: 'Full resume as markdown',
+        },
+        injectTo: 'head',
+      },
+      {
+        tag: 'link',
+        attrs: {
+          rel: 'alternate',
+          type: 'application/json',
+          href: `${base}resume.json`,
+          title: 'JSON Resume',
+        },
         injectTo: 'head',
       },
     ],

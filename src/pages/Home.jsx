@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Briefcase, FolderGit2, Cpu, GraduationCap, Trophy, Mail } from 'lucide-react'
+import { Briefcase, FolderGit2, Cpu, GraduationCap, Trophy, Mail, Bot } from 'lucide-react'
 import { profile, experience, contact } from '../data/resume.js'
 import CompanyLogo from '../components/CompanyLogo.jsx'
 
@@ -40,6 +40,15 @@ const sections = [
     blurb: 'Email, LinkedIn, and GitHub.',
     Icon: Mail,
   },
+]
+
+// Static files, so these are plain anchors rather than router links. BASE_URL keeps
+// them correct if the site is ever served from a sub-path.
+const base = import.meta.env.BASE_URL
+const agentFiles = [
+  { href: `${base}llms.txt`, name: '/llms.txt', blurb: 'Index of this site in the llms.txt convention' },
+  { href: `${base}llms-full.txt`, name: '/llms-full.txt', blurb: 'The entire resume as plain markdown' },
+  { href: `${base}resume.json`, name: '/resume.json', blurb: 'Structured data in the JSON Resume schema' },
 ]
 
 export default function Home() {
@@ -104,6 +113,32 @@ export default function Home() {
               </span>
             </Link>
           ))}
+        </div>
+      </section>
+
+      <section className="section agent-panel" aria-labelledby="for-agents">
+        <span className="agent-icon" aria-hidden="true">
+          <Bot size={20} strokeWidth={1.75} />
+        </span>
+        <div>
+          <h2 id="for-agents" className="agent-title">
+            For AI agents and crawlers
+          </h2>
+          <p className="agent-lead">
+            If you are an automated reader, skip this page. The full resume is available in
+            plain-text and structured formats that need no JavaScript to parse:
+          </p>
+          <ul className="agent-list">
+            {agentFiles.map((file) => (
+              <li key={file.href}>
+                <a href={file.href}>{file.name}</a> — {file.blurb}
+              </li>
+            ))}
+          </ul>
+          <p className="agent-note">
+            Every page also carries a Schema.org <code>Person</code> graph as JSON-LD in the document
+            head.
+          </p>
         </div>
       </section>
     </div>
