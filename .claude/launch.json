@@ -6,6 +6,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev", "--", "--port", "5173", "--strictPort"],
       "port": 5173
+    },
+    {
+      "name": "pages-sim",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["scripts/serve-pages-sim.js"],
+      "port": 4173
     }
   ]
 }

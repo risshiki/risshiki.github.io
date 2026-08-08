@@ -33,11 +33,16 @@ jobs:
         id: base
         run: |
           # A <user>.github.io repo is served from "/"; every other repo from "/<repo>/".
-          if [[ "${{ github.event.repository.name }}" == *.github.io ]]; then
-            echo "path=/" >> "$GITHUB_OUTPUT"
-          else
-            echo "path=/${{ github.event.repository.name }}/" >> "$GITHUB_OUTPUT"
-          fi
+          # GITHUB_REPOSITORY ("owner/repo") is set for every event type, unlike the
+          # event payload, so strip the owner off that.
+          repo="${GITHUB_REPOSITORY#*/}"
+          lower=$(printf '%s' "$repo" | tr '[:upper:]' '[:lower:]')
+          case "$lower" in
+            *.github.io) path="/" ;;
+            *)           path="/${repo}/" ;;
+          esac
+          echo "path=${path}" >> "$GITHUB_OUTPUT"
+          echo "Repository '${repo}' resolves to base path '${path}'"
 
       - name: Build
         env:
