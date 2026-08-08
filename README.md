@@ -31,6 +31,31 @@ src/
 To update content, edit `src/data/resume.js` — the pages read from it, so no JSX changes are needed for
 new roles, projects, skills, or awards.
 
+## Agent-readable versions
+
+Three machine-readable views are generated from `src/data/resume.js` — they cannot drift from the
+site, because they are built from the same data the pages render:
+
+| URL | Format |
+| --- | --- |
+| [`/llms.txt`](https://www.rpisipat.com/llms.txt) | Index in the llms.txt convention — summary, section links, contact |
+| [`/llms-full.txt`](https://www.rpisipat.com/llms-full.txt) | Entire resume as plain markdown, one file |
+| [`/resume.json`](https://www.rpisipat.com/resume.json) | [JSON Resume](https://jsonresume.org/schema/) schema |
+
+`index.html` also carries a Schema.org `Person` graph as JSON-LD, injected at build time by a plugin
+in `vite.config.js`, so crawlers get structured data without executing the app.
+
+`scripts/generate-agent-files.mjs` writes the three files into `public/` and runs automatically via
+`prebuild` (and before `dev`). The output is gitignored — it's build output, not source. Regenerate
+by hand with:
+
+```bash
+npm run generate:agent
+```
+
+Because these are generated from `resume.js`, that file must stay plain data with no imports — Node
+reads it directly. Image imports live in `src/data/logos.js`; `resume.js` refers to logos by key.
+
 ## Deploying
 
 The workflow at `.github/workflows/deploy.yml` builds and publishes on every push to `main`

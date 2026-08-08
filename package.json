@@ -4,7 +4,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "npm run generate:agent && vite",
+    "generate:agent": "node scripts/generate-agent-files.mjs",
+    "prebuild": "npm run generate:agent",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint ."

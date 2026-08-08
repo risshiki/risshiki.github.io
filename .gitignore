@@ -5,6 +5,11 @@ dist-ssr
 .DS_Store
 .vite
 
+# Generated from src/data/resume.js by scripts/generate-agent-files.mjs
+public/llms.txt
+public/llms-full.txt
+public/resume.json
+
 # Local tool state
 .claude/settings.local.json
 

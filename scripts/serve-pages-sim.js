@@ -10,6 +10,7 @@ const PORT = 4173
 
 const TYPES = {
   '.html': 'text/html',
+  '.txt': 'text/plain',
   '.js': 'text/javascript',
   '.css': 'text/css',
   '.png': 'image/png',
@@ -28,8 +29,15 @@ createServer(async (req, res) => {
     res.writeHead(200, { 'content-type': TYPES[extname(candidate)] ?? 'application/octet-stream' })
     res.end(body)
   } catch {
-    const fallback = await readFile(join(ROOT, '404.html'))
-    res.writeHead(404, { 'content-type': 'text/html' })
-    res.end(fallback)
+    // Pages serves 404.html for anything missing. If the build hasn't produced one
+    // yet, say so plainly rather than throwing and taking the whole server down.
+    try {
+      const fallback = await readFile(join(ROOT, '404.html'))
+      res.writeHead(404, { 'content-type': 'text/html' })
+      res.end(fallback)
+    } catch {
+      res.writeHead(404, { 'content-type': 'text/plain' })
+      res.end('404 — and dist/404.html is missing. Run: cp dist/index.html dist/404.html\n')
+    }
   }
 }).listen(PORT, () => console.log(`Pages simulation on http://localhost:${PORT}`))

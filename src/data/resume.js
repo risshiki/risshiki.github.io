@@ -1,9 +1,6 @@
-// Single source of truth for every page. Update this file and the whole site follows.
-
-import betterlessonLogo from '../assets/betterlesson-logo.png'
-import renaissanceLogo from '../assets/renaissance-logo.png'
-import cmuLogo from '../assets/cmu-logo.png'
-import niitLogo from '../assets/niit-university-logo.png'
+// Single source of truth for every page and for the generated agent-facing files
+// (llms.txt, resume.json). Plain data only — no imports, so Node can read it directly.
+// `logo` is a key into src/data/logos.js.
 
 export const profile = {
   name: 'Rishi Pisipati',
@@ -32,7 +29,7 @@ export const experience = [
     start: 'June 2021',
     end: 'Dec 2025',
     location: 'Boston, MA (Remote)',
-    logo: betterlessonLogo,
+    logo: 'betterlesson',
     tags: ['Spring Boot', 'React', 'Microservices', 'Gemini API', 'AWS S3', 'Flask'],
     bullets: [
       'Built ML preprocessing pipelines and inference services using Gemini APIs and Spring Boot to generate automated insights from qualitative educational datasets.',
@@ -53,7 +50,7 @@ export const experience = [
     start: 'Oct 2019',
     end: 'July 2021',
     location: 'Wisconsin Rapids, WI',
-    logo: renaissanceLogo,
+    logo: 'renaissance',
     logoNeedsPlate: true,
     tags: ['Angular', 'RxJS', 'C#', 'GraphQL', 'PostgreSQL', 'MongoDB'],
     bullets: [
@@ -118,7 +115,7 @@ export const education = [
     location: 'Pittsburgh, PA, USA',
     date: 'Aug 2019',
     dates: '2018 – 2019',
-    logo: cmuLogo,
+    logo: 'cmu',
     coursework: [
       'Applied Machine Learning',
       'Human-AI Interaction',
@@ -144,7 +141,7 @@ export const education = [
     location: 'Alwar, Rajasthan, India',
     date: 'Aug 2017',
     dates: '2013 – 2017',
-    logo: niitLogo,
+    logo: 'niit',
     logoNeedsPlate: true,
     coursework: [
       {
