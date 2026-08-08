@@ -13,7 +13,7 @@ const sections = [
   {
     to: '/projects',
     label: 'Projects',
-    blurb: 'Contactless vitals sensing over WiFi, and geospatial ML on NASA VIIRS data.',
+    blurb: 'Geospatial ML on 74K+ NASA VIIRS fire detections.',
     Icon: FolderGit2,
   },
   {

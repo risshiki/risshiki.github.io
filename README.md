@@ -21,7 +21,8 @@ Other scripts:
 
 ```
 src/
-  data/resume.js      # All resume content — single source of truth for every page
+  data/resume.js        # All resume content — single source of truth for every page
+  data/projects-draft.js # Unpublished projects; imported nowhere, so never bundled
   components/         # Layout, Nav, Footer, PageHeader, TagList, ThemeToggle
   pages/              # Home, Experience, Projects, Skills, Education, Awards, Contact, NotFound
   styles/index.css    # Design tokens + all component styles
