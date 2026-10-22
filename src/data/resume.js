@@ -6,7 +6,7 @@ export const profile = {
   name: 'Rishi Pisipati',
   title: 'Product Engineer, EdTech',
   summary:
-    'Product engineer with 6+ years building learning tools for teachers, coaches, and district leaders. Trained in the learning sciences at Carnegie Mellon, I take ideas from prototype to production — most notably Learning Walks, which grew from a hackathon project into BetterLesson\'s most successful product ($2.3M in bookings, NPS of 68). Equally at home in React front ends, Spring Boot microservices, and the AI pipelines that turn educational data into insight.',
+    "I build software for the people who run schools and classrooms. Since 2019 that's meant tools for teachers, instructional coaches and district leaders, and the one I'm proudest of is Learning Walks: a hackathon project that became BetterLesson's biggest product ($2.3M in bookings, NPS 68). I studied learning science at Carnegie Mellon, so I care whether a tool actually helps someone teach, not just whether it scales. Day to day that's React, Spring Boot, and a growing pile of LLM plumbing.",
   location: 'Austin, TX',
   highlights: [
     { value: '6+', label: 'Years building production software' },
