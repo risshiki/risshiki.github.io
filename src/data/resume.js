@@ -26,9 +26,9 @@ export const experience = [
   {
     id: 'betterlesson',
     company: 'BetterLesson Learning',
-    role: 'Principal Platform Engineer',
-    start: 'Jun 2021',
-    end: 'Current',
+    role: 'Software Engineer II',
+    start: 'Jul 2021',
+    end: 'Dec 2025',
     location: 'Boston, MA (Remote)',
     logo: 'betterlesson',
     tags: ['React', 'Spring Boot', 'Microservices', 'Gemini API', 'AWS S3', 'AWS SQS', 'Salesforce'],
