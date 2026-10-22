@@ -4,13 +4,14 @@
 
 export const profile = {
   name: 'Rishi Pisipati',
-  title: 'Full Stack Engineer',
+  title: 'Product Engineer, EdTech',
   summary:
-    'Software Engineer with 6+ years of experience building scalable microservices and AI-driven platforms for education technology. Proven success leading cross-functional initiatives at BetterLesson and Renaissance Learning, modernizing infrastructure, and delivering impactful teacher development tools.',
+    'Product engineer with 6+ years building learning tools for teachers, coaches, and district leaders. Trained in the learning sciences at Carnegie Mellon, I take ideas from prototype to production — most notably Learning Walks, which grew from a hackathon project into BetterLesson\'s most successful product ($2.3M in bookings, NPS of 68). Equally at home in React front ends, Spring Boot microservices, and the AI pipelines that turn educational data into insight.',
   location: 'Austin, TX',
   highlights: [
     { value: '6+', label: 'Years building production software' },
     { value: '$2.3M', label: 'Bookings driven by Learning Walks (2023)' },
+    { value: '81', label: 'Districts kept in sync across Salesforce, Quickbase and the platform' },
   ],
 }
 
@@ -24,23 +25,21 @@ export const contact = {
 export const experience = [
   {
     id: 'betterlesson',
-    company: 'BetterLesson',
-    role: 'Software Engineer II',
-    start: 'June 2021',
-    end: 'Dec 2025',
+    company: 'BetterLesson Learning',
+    role: 'Principal Platform Engineer',
+    start: 'Jun 2021',
+    end: 'Current',
     location: 'Boston, MA (Remote)',
     logo: 'betterlesson',
-    tags: ['Spring Boot', 'React', 'Microservices', 'Gemini API', 'AWS S3', 'Flask'],
+    tags: ['React', 'Spring Boot', 'Microservices', 'Gemini API', 'AWS S3', 'AWS SQS', 'Salesforce'],
     bullets: [
-      'Built ML preprocessing pipelines and inference services using Gemini APIs and Spring Boot to generate automated insights from qualitative educational datasets.',
-      'Led the redesign of a 750K-line legacy codebase, fully deprecating the previous application and resolving major scalability issues. Refactored a monolithic Flask and React Native platform into Spring Boot microservices with React micro-frontend components.',
-      "Spearheaded the design and implementation of the Learning Walks app, a digital application enabling district leaders to assess the impact of professional development — from hackathon to finished product. Achieved an NPS of 68 and generated $2.3M in bookings (2023), making it the company's most successful product.",
-      'Built an automated Zoom ingestion pipeline using Spring Boot, S3, and Zoom Webhook APIs to detect, fetch, and process meeting and coaching recordings in real time, normalize metadata, and synchronize sessions across microservices — eliminating manual workflows.',
-      'Built scalable data pipelines for Salesforce and Quickbase, delivering reliable cross-service data consistency with strong validation and retry mechanisms.',
+      "Took Learning Walks from hackathon prototype to the company's top product — $2.3M in 2023 bookings, NPS 68 — leading design and build of an offline-capable React + Spring Boot app.",
+      'Shipped LLM-generated insights over qualitative coaching data with preprocessing pipelines and Spring Boot inference services on the Gemini API.',
+      'Kept Salesforce, Quickbase and multi-tenant platform data consistent for 81 districts via validated sync pipelines.',
+      'Retired a 750K-line Flask monolith by leading requirements reviews with stakeholders and re-architecting it into fault-tolerant Spring Boot microservices and React micro-frontends.',
+      'Eliminated manual uploads across 20TB+ of coaching video with an event-driven ingestion pipeline (Spring Boot, S3, SQS, Zoom webhooks).',
       'Served as Tier-2 support for mission-critical services, triaging ingestion failures, improving retry logic, and reducing incident recovery time through root-cause analysis and automated remediation.',
       'Wrote internal integration docs, architectural diagrams, and onboarding guides; led code reviews and engineering whiteboards, accelerating junior engineer ramp-up and cross-service knowledge transfer.',
-      'Maintained and optimized in-house legacy Flask API endpoints used by partner districts, delivering bug fixes, performance improvements, and schema migrations while ensuring backward compatibility.',
-      'Designed ML data pipelines for model preprocessing, feature extraction, and inference.',
     ],
   },
   {
@@ -48,7 +47,7 @@ export const experience = [
     company: 'Renaissance Learning',
     role: 'Software Engineer I',
     start: 'Oct 2019',
-    end: 'July 2021',
+    end: 'Jul 2021',
     location: 'Wisconsin Rapids, WI',
     logo: 'renaissance',
     logoNeedsPlate: true,
@@ -65,6 +64,24 @@ export const experience = [
 ]
 
 export const projects = [
+  {
+    id: 'lumos',
+    icon: 'search',
+    name: 'Lumos',
+    subtitle: 'Instant filename search for macOS, built for people and AI agents',
+    tags: ['Swift', 'macOS', 'FSEvents', 'MCP', 'Python', 'GitHub Actions'],
+    pipeline: ['Parallel getattrlistbulk scan', 'In-memory name index', 'Trigram index', 'FSEvents live updates', 'App · CLI · MCP'],
+    bullets: [
+      'Built a native macOS filename search app in the spirit of Everything on Windows: it indexes names, paths, sizes and dates rather than file contents, so results contain only files and folders from the locations the user chose.',
+      'Cold-scans about 1.1 million files in roughly 5 seconds on an M1 Pro with multithreaded getattrlistbulk, then stays current through FSEvents by re-reading only the folders that changed. Relaunches load an atomic, checksummed snapshot in under a second and replay the file system journal.',
+      'Keeps names in compact in-memory arrays (under 100 bytes per file) scanned in parallel across cores, with a background trigram index that cut name searches on ~415K files from 1–3 ms to 0.03–1 ms while returning results identical to a full scan.',
+      'Exposed the same index to AI agents through a lumos CLI and an MCP server (find_files, index_status). Most searches answer in 30–60 ms where find took 5–10 seconds, with paged output sized for a model, a JSON mode and stable exit codes.',
+      'Every answer states whether the index is exact, so "no matches" can be trusted. In testing, Lumos found a file created moments earlier that Spotlight missed, and 3,497 files named "readme" to Spotlight\'s 1,468.',
+      'Private by design: queries travel over a Unix socket only the user can open and are never logged, and the only thing written to disk is a filename catalog.',
+      'Covered by a test suite (query parser, trigram index against full scan, snapshot integrity, journal replay, MCP server) running in GitHub Actions on macOS 14, plus a stress harness that adds and deletes a million files live, while stopped, and across a kill -9.',
+    ],
+    source: { label: 'github.com/rishipisipati/lumos', url: 'https://github.com/rishipisipati/lumos' },
+  },
   {
     id: 'viirs-fire',
     icon: 'flame',
@@ -150,37 +167,34 @@ export const languages = [
 ]
 
 export const skills = [
-  { category: 'Languages', items: ['Python', 'Java', 'TypeScript', 'JavaScript', 'C#', 'SQL'] },
+  { category: 'Languages', items: ['Java', 'Python', 'TypeScript', 'JavaScript', 'SQL', 'C#'] },
   {
-    category: 'Frameworks',
-    items: ['Spring Boot', 'Flask', 'React', 'Angular', 'MUI', 'RxJS'],
+    category: 'Backend',
+    items: ['Spring Boot', 'REST', 'GraphQL', 'JPA/Hibernate', 'Flask', 'Event-driven microservices'],
+  },
+  { category: 'Frontend', items: ['React', 'Angular', 'RxJS', 'Micro-frontends'] },
+  {
+    category: 'AI & ML',
+    items: ['Gemini API', 'Scikit-learn', 'PyTorch', 'Pandas', 'Airflow', 'MLflow', 'Claude Code', 'Cursor'],
   },
   {
-    category: 'Cloud & Infrastructure',
-    items: ['AWS S3', 'AWS SQS', 'AWS SNS', 'Kinesis', 'CloudWatch', 'Kubernetes', 'Docker', 'Terraform'],
-  },
-  { category: 'Databases', items: ['PostgreSQL', 'MongoDB', 'MySQL'] },
-  { category: 'DevOps & CI/CD', items: ['Jenkins', 'CircleCI', 'GitHub Actions', 'Helm'] },
-  {
-    category: 'Machine Learning Libraries',
-    items: ['Scikit-learn', 'TensorFlow', 'PyTorch', 'XGBoost', 'Pandas', 'NumPy', 'SciPy', 'NLTK', 'SpaCy'],
-  },
-  { category: 'ML Deployment', items: ['MLflow', 'Kubeflow', 'Airflow'] },
-  {
-    category: 'Data Visualization',
-    items: ['Tableau', 'Power BI', 'Seaborn', 'Matplotlib', 'Excel', 'GeoPandas', 'Scikit-learn'],
-  },
-  { category: 'Testing & Automation', items: ['JMeter', 'PyTest', 'JUnit', 'Postman', 'Selenium'] },
-  { category: 'Version Control', items: ['Git', 'GitHub', 'Bitbucket'] },
-  {
-    category: 'Development Practices',
+    category: 'Cloud & Data',
     items: [
-      'Agile/Scrum',
-      'Test-Driven Development',
-      'Code Reviews',
-      'Technical Documentation',
-      'Performance Optimization',
+      'AWS S3',
+      'AWS SQS',
+      'AWS SNS',
+      'Kinesis',
+      'CloudWatch',
+      'Docker',
+      'Kubernetes',
+      'Terraform',
+      'PostgreSQL',
+      'MongoDB',
     ],
+  },
+  {
+    category: 'Delivery',
+    items: ['Requirements & roadmapping', 'Stakeholder management', 'Agile/Scrum', 'TDD', 'CI/CD'],
   },
 ]
 

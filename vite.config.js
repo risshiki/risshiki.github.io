@@ -70,9 +70,45 @@ function jsonLd() {
   }
 }
 
+// Vite's static server sends .txt files as bare `text/plain`, so browsers fall back to
+// Windows-1252 and garble the UTF-8 dashes in llms.txt. GitHub Pages already sends a
+// charset; this makes dev and preview match it.
+function utf8Text() {
+  const TYPE = 'text/plain; charset=utf-8'
+
+  // The static server passes its headers straight to writeHead, so patch there and
+  // cover both the headers argument and anything already set with setHeader.
+  const addCharset = (req, res, next) => {
+    if (/\.txt(\?|$)/.test(req.url ?? '')) {
+      const writeHead = res.writeHead.bind(res)
+      res.writeHead = (status, ...rest) => {
+        const headers = rest.find((arg) => arg && typeof arg === 'object')
+        for (const key of Object.keys(headers ?? {})) {
+          if (key.toLowerCase() === 'content-type' && headers[key] === 'text/plain') headers[key] = TYPE
+        }
+        if (res.getHeader('content-type') === 'text/plain') res.setHeader('Content-Type', TYPE)
+        return writeHead(status, ...rest)
+      }
+    }
+    next()
+  }
+
+  // Block bodies on purpose: Vite treats a function returned from these hooks as a
+  // post-middleware hook, and middlewares.use() returns the connect app.
+  return {
+    name: 'utf8-text',
+    configureServer(server) {
+      server.middlewares.use(addCharset)
+    },
+    configurePreviewServer(server) {
+      server.middlewares.use(addCharset)
+    },
+  }
+}
+
 // `VITE_BASE` is set by the GitHub Actions workflow so the built asset URLs match
 // the Pages URL (`/<repo>/` for a project site, `/` for a `<user>.github.io` site).
 export default defineConfig({
-  plugins: [react(), jsonLd()],
+  plugins: [react(), jsonLd(), utf8Text()],
   base: process.env.VITE_BASE || '/',
 })

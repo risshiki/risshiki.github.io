@@ -10,7 +10,7 @@ const PORT = 4173
 
 const TYPES = {
   '.html': 'text/html',
-  '.txt': 'text/plain',
+  '.txt': 'text/plain; charset=utf-8',
   '.js': 'text/javascript',
   '.css': 'text/css',
   '.png': 'image/png',

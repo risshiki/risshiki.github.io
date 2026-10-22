@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Briefcase, FolderGit2, Cpu, GraduationCap, Trophy, Mail, Bot } from 'lucide-react'
 import { profile, experience, contact } from '../data/resume.js'
 import CompanyLogo from '../components/CompanyLogo.jsx'
+import Portrait from '../components/Portrait.jsx'
 
 const sections = [
   {
@@ -13,7 +14,7 @@ const sections = [
   {
     to: '/projects',
     label: 'Projects',
-    blurb: 'Geospatial ML on 74K+ NASA VIIRS fire detections.',
+    blurb: 'Lumos, instant file search for macOS, plus geospatial ML on NASA fire data.',
     Icon: FolderGit2,
   },
   {
@@ -55,17 +56,20 @@ export default function Home() {
   return (
     <div className="page">
       <section className="hero">
-        <p className="eyebrow">{profile.location}</p>
-        <h1 className="hero-name">{profile.name}</h1>
-        <p className="hero-title">{profile.title}</p>
-        <p className="hero-summary">{profile.summary}</p>
-        <div className="hero-actions">
-          <Link className="button button-primary" to="/experience">
-            View experience
-          </Link>
-          <a className="button" href={`mailto:${contact.email}`}>
-            Get in touch
-          </a>
+        <Portrait className="hero-portrait" alt={`Illustrated portrait of ${profile.name}`} />
+        <div className="hero-text">
+          <p className="eyebrow">{profile.location}</p>
+          <h1 className="hero-name">{profile.name}</h1>
+          <p className="hero-title">{profile.title}</p>
+          <p className="hero-summary">{profile.summary}</p>
+          <div className="hero-actions">
+            <Link className="button button-primary" to="/experience">
+              View experience
+            </Link>
+            <a className="button" href={`mailto:${contact.email}`}>
+              Get in touch
+            </a>
+          </div>
         </div>
       </section>
 

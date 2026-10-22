@@ -1,10 +1,10 @@
 import { Fragment } from 'react'
-import { Wifi, Flame } from 'lucide-react'
+import { Wifi, Flame, Search } from 'lucide-react'
 import PageHeader from '../components/PageHeader.jsx'
 import TagList from '../components/TagList.jsx'
 import { projects } from '../data/resume.js'
 
-const PROJECT_ICONS = { wifi: Wifi, flame: Flame }
+const PROJECT_ICONS = { wifi: Wifi, flame: Flame, search: Search }
 
 export default function Projects() {
   return (
@@ -67,6 +67,14 @@ export default function Projects() {
                   ))}
                 </ul>
               </section>
+            )}
+
+            {project.source && (
+              <p className="source-link">
+                <a href={project.source.url} target="_blank" rel="noreferrer">
+                  {project.source.label} ↗
+                </a>
+              </p>
             )}
           </article>
           )

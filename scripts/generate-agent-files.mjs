@@ -119,6 +119,7 @@ Website: ${SITE}`)
         if (project.pipeline) parts.push(`Pipeline: ${project.pipeline.join(' -> ')}`)
         parts.push(`\n${bullets(project.bullets)}`)
         if (project.future?.length) parts.push(`\nPlanned work:\n${bullets(project.future)}`)
+        if (project.source) parts.push(`\nSource: ${project.source.url}`)
         return parts.join('\n')
       })
       .join('\n\n')}`,
@@ -200,6 +201,7 @@ function buildJsonResume() {
     projects: projects.map((project) => ({
       name: project.name,
       description: project.subtitle,
+      url: project.source?.url,
       highlights: project.bullets,
       keywords: project.tags,
     })),

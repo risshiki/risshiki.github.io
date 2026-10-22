@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { NavLink, Link, useLocation } from 'react-router-dom'
 import { profile } from '../data/resume.js'
 import ThemeToggle from './ThemeToggle.jsx'
+import Portrait from './Portrait.jsx'
 
 const navLinks = [
   { to: '/', label: 'Home' },
@@ -25,7 +26,7 @@ export default function Nav() {
     <header className="nav">
       <div className="nav-inner">
         <Link to="/" className="nav-brand" onClick={close}>
-          <span className="nav-brand-mark">RP</span>
+          <Portrait className="nav-brand-mark" />
           <span className="nav-brand-text">
             <strong>{profile.name}</strong>
             <small>{profile.title}</small>
