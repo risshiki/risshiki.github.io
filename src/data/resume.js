@@ -9,9 +9,9 @@ export const profile = {
     'I build software for people who want to learn.',
   location: 'Austin, TX',
   highlights: [
-    { value: '6+', label: 'Years building production software' },
-    { value: '$2.3M', label: 'Bookings driven by Learning Walks (2023)' },
-    { value: '81', label: 'Districts kept in sync across Salesforce, Quickbase and the platform' },
+    { value: '6', label: 'Years of software engineering experience' },
+    { value: '$8M', label: 'In value driven by products I built' },
+    { value: '1M+', label: 'Users across the websites I’ve served' },
   ],
 }
 
