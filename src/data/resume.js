@@ -160,10 +160,10 @@ export const education = [
 ]
 
 export const languages = [
-  { name: 'English', level: 'Native / bilingual' },
-  { name: 'Hindi', level: 'Full professional' },
-  { name: 'Marathi', level: 'Full professional' },
-  { name: 'Telugu', level: 'Full professional' },
+  { name: 'English', level: 'Fluent' },
+  { name: 'Hindi', level: 'Proficient' },
+  { name: 'Marathi', level: 'Proficient' },
+  { name: 'Telugu', level: 'Proficient' },
 ]
 
 export const skills = [

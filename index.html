@@ -3,6 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Apply the saved theme before first paint so a dark-mode visitor never sees the
+         light theme flash and animate over. Key must match ThemeToggle.jsx. -->
+    <script>
+      try {
+        var theme = localStorage.getItem('portfolio-theme')
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        }
+        document.documentElement.dataset.theme = theme
+      } catch (e) {}
+    </script>
     <meta
       name="description"
       content="Rishi Pisipati builds software for teachers, coaches and district leaders. Product engineer in EdTech: React, Spring Boot and LLMs, with a learning-science background from Carnegie Mellon."

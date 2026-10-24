@@ -3,6 +3,10 @@ import { useEffect, useState } from 'react'
 const STORAGE_KEY = 'portfolio-theme'
 
 function initialTheme() {
+  // The inline script in index.html has already applied the theme before first paint;
+  // start from it so React never renders the other theme first.
+  const applied = document.documentElement.dataset.theme
+  if (applied === 'light' || applied === 'dark') return applied
   const saved = localStorage.getItem(STORAGE_KEY)
   if (saved === 'light' || saved === 'dark') return saved
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
