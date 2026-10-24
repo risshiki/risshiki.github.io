@@ -368,24 +368,33 @@ h3 {
 
 /* ---------- portrait ---------- */
 
-/* Both theme variants are in the DOM; only the one matching data-theme shows. */
+/* Both theme variants are stacked in the same cell and cross-fade on theme change.
+   The two images share one frame, so only the scene changes, not the figure. */
 .portrait {
-  display: block;
+  display: grid;
 }
 
 .portrait img {
+  grid-area: 1 / 1;
   display: block;
   width: 100%;
   height: auto;
+  transition: opacity 0.6s ease;
 }
 
 .portrait .portrait-dark,
 :root[data-theme='dark'] .portrait .portrait-light {
-  display: none;
+  opacity: 0;
 }
 
 :root[data-theme='dark'] .portrait .portrait-dark {
-  display: block;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portrait img {
+    transition: none;
+  }
 }
 
 /* ---------- hero ---------- */
