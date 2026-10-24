@@ -270,6 +270,57 @@ h3 {
   box-shadow: none;
 }
 
+/* Hovering the theme toggle previews the mode it will switch to: a moonlit night
+   glow from the light theme, warm daylight from the dark theme. */
+.theme-toggle {
+  transition: transform 0.1s ease, box-shadow 0.35s ease, background-color 0.35s ease,
+    border-color 0.35s ease, color 0.35s ease;
+}
+
+.theme-toggle-icon {
+  display: inline-block;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), text-shadow 0.35s ease;
+}
+
+@media (hover: hover) {
+  :root:not([data-theme='dark']) .theme-toggle:hover {
+    background: #161a30;
+    border-color: #353b60;
+    color: #f1efff;
+    box-shadow: 0 2px 0 #070914, 0 0 0 4px rgba(141, 141, 255, 0.16),
+      0 6px 22px rgba(74, 74, 232, 0.45);
+  }
+
+  :root:not([data-theme='dark']) .theme-toggle:hover .theme-toggle-icon {
+    transform: rotate(-18deg) scale(1.12);
+    text-shadow: 0 0 8px rgba(200, 200, 255, 0.9);
+  }
+
+  :root[data-theme='dark'] .theme-toggle:hover {
+    background: #fff8e1;
+    border-color: #f2c230;
+    color: #b77800;
+    box-shadow: 0 2px 0 #c39514, 0 0 0 4px rgba(255, 214, 51, 0.16),
+      0 6px 24px rgba(255, 196, 40, 0.5);
+  }
+
+  :root[data-theme='dark'] .theme-toggle:hover .theme-toggle-icon {
+    transform: rotate(45deg) scale(1.12);
+    text-shadow: 0 0 10px rgba(255, 180, 0, 0.85);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle,
+  .theme-toggle-icon {
+    transition: none;
+  }
+
+  .theme-toggle:hover .theme-toggle-icon {
+    transform: none !important;
+  }
+}
+
 .nav-toggle {
   display: none;
   gap: 4px;
